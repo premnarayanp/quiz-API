@@ -23,7 +23,7 @@ module.exports.create = async function(req, res) {
     }
 }
 
-
+//ISO format date validator
 function getDateValidation(startDate, endDate) {
     try {
         if (new Date(startDate).toISOString() == startDate && new Date(endDate).toISOString() == endDate) {
@@ -34,4 +34,22 @@ function getDateValidation(startDate, endDate) {
     } catch (error) {
         return false;
     }
+}
+
+// Retrieve activeQuizzes
+module.exports.activeQuizzes = async function(req, res) {
+    try {
+        const quizzes = await Quiz.find({ user: req.user._id, isActiveQuiz: true });
+        if (quizzes) {
+            return res.json({ success: true, msg: "Active quizzes successfully found", data: { quizzes: quizzes } });
+        } else {
+            return res.json({ success: true, msg: "Nothing found any active quiz", data: null });
+        }
+
+
+    } catch (error) {
+        //console.log("============error=============", error);
+        return res.json({ success: false, msg: "Internal server Error..", data: null });
+    }
+
 }
