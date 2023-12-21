@@ -53,3 +53,21 @@ module.exports.activeQuizzes = async function(req, res) {
     }
 
 }
+
+// Retrieve All Quizzes
+module.exports.getAllQuizzes = async function(req, res) {
+    try {
+        const quizzes = await Quiz.find({ user: req.user._id });
+        if (quizzes) {
+            return res.json({ success: true, msg: "All quizzes successfully found", data: { quizzes: quizzes } });
+        } else {
+            return res.json({ success: true, msg: "Nothing found any quiz", data: null });
+        }
+
+
+    } catch (error) {
+        //console.log("============error=============", error);
+        return res.json({ success: false, msg: "Internal server Error..", data: null });
+    }
+
+}
