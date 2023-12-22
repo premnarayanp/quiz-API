@@ -127,3 +127,22 @@ function getRemainingTime(isoDateString) {
 
     }
 }
+
+// get quiz results using quiz _id (quiz_id) from Result Collection
+module.exports.getQuizResult = async function(req, res) {
+    try {
+        const result = await Result.findOne({ quiz: req.params.quiz_id });
+        //console.log("========result======", result);
+        if (result) {
+            return res.json({ success: true, msg: "Related results successfully found", data: { result: result } });
+        } else {
+            return res.json({ success: true, msg: "Nothing found any Result", data: null });
+        }
+
+
+    } catch (error) {
+        //console.log("============error=============", error);
+        return res.json({ success: false, msg: "Internal server Error..", data: null });
+    }
+
+}
