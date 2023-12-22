@@ -1,4 +1,5 @@
 const Quiz = require('../models/quiz');
+const Result = require('../models/result');
 
 //---------Create a Quiz--------------
 module.exports.create = async function(req, res) {
@@ -70,4 +71,59 @@ module.exports.getAllQuizzes = async function(req, res) {
         return res.json({ success: false, msg: "Internal server Error..", data: null });
     }
 
+}
+
+//create/Update results using node-cron
+module.exports.createResults = async function(req, res) {
+    try {
+        const quizzes = await Quiz.find({ isActiveQuiz: true });
+        if (quizzes) {
+            quizzes.forEach(async(quiz) => {
+                //Remain time to end this quiz according endDate
+                const remainingTime = getRemainingTime(quiz.endDate);
+                console.log("remainingTime", remainingTime);
+                if (remainingTime.day == 0 && remainingTime.hours == 0 && remainingTime.minutes * 60 + remainingTime.seconds <= 0) {
+
+                    const result = await Result.create({
+                        pass: true,
+                        totalQuestions: 1,
+                        rightAnswer: quiz.rightAnswer,
+                        quiz: quiz._id,
+                        user: quiz.user,
+                    });
+                    //console.log("result", result);
+                    quiz.isActiveQuiz = false;
+                    quiz.result = result._id;
+                    quiz.save();
+                }
+            });
+        }
+
+    } catch (error) {
+
+    }
+
+}
+
+//get minutes,second,hour from ISO string and current time  different
+function getRemainingTime(isoDateString) {
+    try {
+        const currentDate = new Date();
+        const date = new Date(isoDateString);
+
+        const day = date.getUTCDate() - currentDate.getDate();
+        //console.log("day=", day);
+        const hours = date.getUTCHours() - currentDate.getHours();
+        const minutes = date.getUTCMinutes() - currentDate.getMinutes();
+        const seconds = date.getUTCSeconds() - currentDate.getSeconds();
+        return {
+            day,
+            hours,
+            minutes,
+            seconds
+        }
+
+    } catch (error) {
+
+    }
 }

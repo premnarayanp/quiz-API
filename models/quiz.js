@@ -16,11 +16,6 @@ const quizSchema = new mongoose.Schema({
         required: true,
     },
 
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    },
-
     startDate: {
         type: String,
         required: true,
@@ -36,7 +31,12 @@ const quizSchema = new mongoose.Schema({
         required: true,
     },
     result: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Result'
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     },
 
 }, {
