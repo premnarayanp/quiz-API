@@ -1,4 +1,5 @@
 Quiz-API Functionality and Designing
+Live URL:- https://quiz-api-66w2.onrender.com
 
 Step Points: -
 1.	Required Module and Dependency.
@@ -44,7 +45,7 @@ b.	![image](https://github.com/premnarayanp/quiz-API/assets/124772915/2f473c7d-8
 
 3.	Functionality/working & Screenshot
 1)	Sign-up: - 
-a.	Routes: - http://localhost:8399/users/signup
+a.	Routes: -  https://quiz-api-66w2.onrender.com/users/signup    https://quiz-api-66w2.onrender.com/users/signup
 b.	Postman Data: -
 name:” p3”, 
 email:”p3@gmail.com”, 
@@ -67,7 +68,7 @@ e.	Validation3: -User mail id should be unique
 
 
 2)	Login: -
-a.	Routes: - http://localhost:8399/users/login
+a.	Routes: - https://quiz-api-66w2.onrender.com/users/login     OR Local like  http://localhost:8399/users/login
 b.	Postman Data: -
 email:”p3@gmail.com”
 password:”3”
@@ -81,7 +82,7 @@ c.	Bearer JWT token: -
 d.	Validation: - All login validation step just same as signup.
 
 3)	Create Quiz: -
-a.	Route: - http://localhost:8399/quizzes/endpoints
+a.	Route: - https://quiz-api-66w2.onrender.com/quizzes/endpoints   OR Local like  http://localhost:8399/quizzes/endpoints
 b.	Postman Data: -
 question:” How to autherized user for Rest API?”,
 options []:” Using Passport JWT Strategy”,
@@ -111,7 +112,7 @@ If startDate and endDate does not in ISO format then then response would be: -
 
 
 4)	Get Active Quiz: -get req
-a.	Route: http://localhost:8399/quizzes/active
+a.	Route: - https://quiz-api-66w2.onrender.com/quizzes/active   OR Local like   http://localhost:8399/quizzes/active
 b.	Get Active quiz in before quiz end: -
  ![image](https://github.com/premnarayanp/quiz-API/assets/124772915/b3d788f0-4d18-46b7-90a1-55eefd407787)
 
@@ -124,13 +125,13 @@ c.	Get Active quiz in after quiz end: -
 
 
 5)	Get All Quiz: -
-a.	Route: - http://localhost:8399/quizzes/all
+a.	Route: - https://quiz-api-66w2.onrender.com/quizzes/all   OR Local like http://localhost:8399/quizzes/all
 b.	Output Response: - Array of all quiz.
  ![image](https://github.com/premnarayanp/quiz-API/assets/124772915/a11b440f-0b73-41de-ae2e-99045f85550f)
 
 
 6)	Get Quiz Result: -
-a.	Route: - http://localhost:8399/quizzes/658551db8ee651d52d60a121/result
+a.	Route: -https://quiz-api-66w2.onrender.com/quizzes/65856f71bf63dce4ad3ff796/result  OR Local like  http://localhost:8399/quizzes/658551db8ee651d52d60a121/result
 b.	Get results in before quiz end: -
               {
                   "success": true,
