@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-//mongoose.connect(process.env.MONGO_DB_URL);
-mongoose.connect("mongodb://127.0.0.1/quiz_api");
+mongoose.connect(process.env.MONGO_DB_URL);
+//mongoose.connect("mongodb://127.0.0.1/quiz_api");
 
 const db = mongoose.connection;
 
